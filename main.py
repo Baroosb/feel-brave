@@ -21,6 +21,10 @@ TEXT = (
 
 
 def main() -> None:
+    if not 1 <= len(TEXT) <= 280:
+        raise ValueError(
+            f"entry text must be 1-280 code points, got {len(TEXT)}"
+        )
     out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "entry.txt").write_bytes(TEXT.encode("utf-8"))
